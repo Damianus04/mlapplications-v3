@@ -1,0 +1,14 @@
+# Data science
+numpy
+pandas
+
+# Machine Learning
+jcopml
+scikit-learn==0.22
+
+# NLP
+nltk
+
+# Web App
+flask
+gunicorn==20.0.4

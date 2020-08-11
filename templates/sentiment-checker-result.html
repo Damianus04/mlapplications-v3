@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %} Sentiment Checker {% endblock %} {%
+block page_content %}
+<div class="page-header text-center">
+  <h1 class="sentiment">Sentiment</h1>
+</div>
+
+<div class="container text-center" style="margin-bottom: 80px;">
+  {% if prediction == 1 %}
+  <h3>POSITIVE</h3>
+  {% elif prediction == -1 %}
+  <h3>NEGATIVE</h3>
+  {% else %}
+  <h3>NEUTRAL</h3>
+  {% endif %}
+</div>
+{% endblock %}
