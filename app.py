@@ -5,8 +5,9 @@ from joblib import load
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from jcopml.utils import load_model
 from nltk.tokenize import word_tokenize
-from static.src.predict import sentiment_prediction, document_prediction
-from static.src.functions import train_bow, train_tfidf, STOPWORDS
+from static.src.sentiment_prediction import sentiment_prediction
+from static.src.document_finder import train_bow, train_tfidf, STOPWORDS, document_prediction
+from static.src.twitter_sentiment_prediction import get_tweets, predict_sentiment, integrate_sentiment_and_df
 
 
 app = Flask(__name__)
@@ -21,7 +22,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/sentiment_checker", methods=["GET", 'POST'])
+@app.route("/sentiment-checker", methods=["GET", 'POST'])
 def sentiment_checker():
     if request.method == "GET":
         return render_template('sentiment-checker.html')
@@ -39,6 +40,39 @@ def document_finder():
         prediction = document_prediction(
             query, "data/bank_central_asia_news.csv", 'Hit Sentence', doc_finder_tfidf, doc_finder_tfidf_matrix)
         return render_template('document-finder-result.html', document_list=prediction)
+
+
+@app.route("/twitter-sentiment-analysis", methods=["GET", 'POST'])
+def twitter_sentiment_analysis():
+    if request.method == "GET":
+        return render_template('twitter-sentiment-analysis.html')
+    # elif request.method == "POST":
+    #     pred = sentiment_prediction(model)
+    #     return render_template('twitter-sentiment-analysis-result.html', prediction=pred)
+
+    if request.method == "GET":
+        return render_template('twitter-sentiment-analysis.html')
+    elif request.method == "POST":
+        # Get Tweet
+        text_query = request.form['text']
+        tweet_data = get_tweets(text_query)
+
+        # Predict Sentiment
+        model_prediction = model
+        text_list = tweet_data
+        colname = "tweet_text"
+
+        sentiment_tweet_data = predict_sentiment(
+            model_prediction, text_list, colname)
+
+        # Integrate Sentiment into Data
+        get_tweet_result_data = tweet_data
+        sentiment_colname = "sentiment"
+        sentiment_result = sentiment_tweet_data
+        df = integrate_sentiment_and_df(
+            get_tweet_result_data, sentiment_colname, sentiment_result)
+
+        return render_template('twitter-sentiment-analysis-result.html', prediction=df)
 
 
 if __name__ == '__main__':

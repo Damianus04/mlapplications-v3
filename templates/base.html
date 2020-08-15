@@ -74,7 +74,11 @@
                   href="{{ url_for('sentiment_checker')}}"
                   >Sentiment Checker</a
                 >
-                <a class="dropdown-item sd" href="">Spam Detector</a>
+                <a
+                  class="dropdown-item sd"
+                  href="{{ url_for('twitter_sentiment_analysis')}}"
+                  >Twitter Sentiment</a
+                >
                 <a
                   class="dropdown-item df"
                   href="{{ url_for('document_finder')}}"
@@ -154,7 +158,11 @@
               class="float-left rounded-circle"
             />
             <h3>
-              <a href="" class="badge badge-light">Spam Detector</a>
+              <a
+                href="{{ url_for('twitter_sentiment_analysis')}}"
+                class="badge badge-light"
+                >Twitter Sentiment</a
+              >
             </h3>
             <p>Find the most similar document based on what you type</p>
           </div>
@@ -170,6 +178,8 @@
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
       integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"

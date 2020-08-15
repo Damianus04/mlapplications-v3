@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+<!-- TITLE -->
+{% block title %} Twitter Sentiment Analysis {% endblock %}
+
+<!-- CONTENT -->
+{% block page_content %}
+
+<!-- Sentiment Search -->
+<div class="container text-center" style="margin-bottom: 80px;">
+  <form action="{{ url_for('twitter_sentiment_analysis')}}" method="POST">
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Enter Text Here</label>
+      <textarea name="text" class="form-control" id="text" rows="3"></textarea>
+      <input
+        id="inpkeyword"
+        type="submit"
+        class="btn btn-primary input-keyword"
+        value="Check Sentiment"
+      />
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+
+<!-- button function still in progress -->
