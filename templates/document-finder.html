@@ -1,22 +1,33 @@
-{% extends "base.html" %} {% block title %} Document Finder {% endblock %} {%
-block page_content %}
+{% extends "base.html" %}
 
-<div class="page-header text-center">
-  <h1>Check Document</h1>
-</div>
+<!-- TITLE -->
+{% block title %} Document Finder {% endblock %}
 
-<div class="container text-center" style="margin-bottom: 80px;">
-  <form action="{{ url_for('document_finder')}}" method="POST">
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Enter Text Here</label>
-      <textarea name="text" class="form-control" id="text" rows="3"></textarea>
-      <input
-        type="submit"
-        class="btn btn-primary input-keyword"
-        value="Find Similar Document"
-      />
+<!-- CONTENT -->
+{%block content %}
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1>Let's find out any similar documents</h1>
+    <div class="container text-center" style="margin-bottom: 80px;">
+      <form action="{{ url_for('document_finder')}}" method="POST">
+        <div class="form-group">
+          <textarea
+            placeholder="Enter Keyword Here"
+            name="text"
+            class="form-control"
+            id="text"
+            rows="3"
+          ></textarea>
+          <input
+            id="inpkeyword"
+            type="submit"
+            class="btn btn-primary input-keyword"
+            value="Find similar documents"
+          />
+        </div>
+      </form>
     </div>
-  </form>
-</div>
+  </div>
+</section>
 
 {% endblock %}

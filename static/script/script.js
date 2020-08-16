@@ -21,11 +21,11 @@
 
 // input_keyword.keydown = ubahWarna;
 
-// it works
-const els = document.querySelector(".display-4");
-function ubahWarna() {
-  els.style.backgroundColor = "green";
-}
-els.onclick = ubahWarna;
+// function untuk ubah warna - it works
+// const els = document.querySelector(".display-4");
+// function ubahWarna() {
+//   els.style.backgroundColor = "green";
+// }
+// els.onclick = ubahWarna;
 
 // PR: cara menambah elemen baru pada halaman html

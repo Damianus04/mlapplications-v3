@@ -23,7 +23,7 @@ def document_prediction(query, filepath, col_name, tfidf, tfidf_matrix):
     df = pd.read_csv(filepath, encoding='iso-8859-1')
     vec = tfidf.transform([query])
     dist = cosine_distances(vec, tfidf_matrix)
-    result_series = dist.argsort()[0, :10]
+    result_series = dist.argsort()[0, :20]
     result_list = result_series.tolist()
     result = df[col_name][result_list]
     document_list = result.tolist()

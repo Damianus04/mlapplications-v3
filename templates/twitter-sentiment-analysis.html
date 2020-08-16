@@ -4,24 +4,64 @@
 {% block title %} Twitter Sentiment Analysis {% endblock %}
 
 <!-- CONTENT -->
-{% block page_content %}
+{% block content %}
 
 <!-- Sentiment Search -->
-<div class="container text-center" style="margin-bottom: 80px;">
-  <form action="{{ url_for('twitter_sentiment_analysis')}}" method="POST">
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Enter Text Here</label>
-      <textarea name="text" class="form-control" id="text" rows="3"></textarea>
-      <input
-        id="inpkeyword"
-        type="submit"
-        class="btn btn-primary input-keyword"
-        value="Check Sentiment"
-      />
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1>Let's find out the tweets sentiment</h1>
+    <div class="container text-center" style="margin-bottom: 80px;">
+      <form action="{{ url_for('twitter_sentiment_analysis')}}" method="POST">
+        <div class="form-group">
+          <textarea
+            placeholder="Enter Keyword Here"
+            name="text"
+            class="form-control"
+            id="text"
+            rows="3"
+          ></textarea>
+          <input
+            id="inpkeyword"
+            type="submit"
+            class="btn btn-primary input-keyword"
+            value="Check"
+          />
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+</section>
+
+{% block page_content %}
+<div class="page-header text-center">
+  <h4 class="sentiment">Search Result</h4>
 </div>
 
-{% endblock %}
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Date</th>
+        <th scope="col">Tweet</th>
+        <th scope="col">Sentiment</th>
+      </tr>
+    </thead>
+    <!-- for loop to display data frame -->
+
+    <tbody>
+      {% for i in range(0, prediction|length) %}
+      <tr>
+        <th scope="row">{{ i+1 }}</th>
+        <td>{{ prediction.created_at[i] }}</td>
+        <td>{{ prediction.tweet_text[i] }}</td>
+        <td>{{ prediction.sentiment[i] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %} {% endblock %}
 
 <!-- button function still in progress -->

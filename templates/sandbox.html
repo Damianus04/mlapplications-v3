@@ -1,0 +1,205 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-sm navbar-light bg-dark position-relative">
+  <div class="container">
+    <a class="navbar-brand" href="/">MLAPPS</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"
+            >Home <span class="sr-only">(current)</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Blog</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Applications
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item sc" href="{{ url_for('sentiment_checker')}}"
+              >Sentiment Checker</a
+            >
+            <a
+              class="dropdown-item sd"
+              href="{{ url_for('twitter_sentiment_analysis')}}"
+              >Twitter Sentiment</a
+            >
+            <a class="dropdown-item df" href="{{ url_for('document_finder')}}"
+              >Document Finder</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          class="form-control mr-sm-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Search
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+<!-- end Navbar -->
+
+<!-- Info Panel -->
+<div class="row justify-content-center">
+  <div class="col-10 info-panel">
+    <div class="row">
+      <div class="col-lg">
+        <img
+          src="../static/img/sentiment.png"
+          alt="employee"
+          class="float-left rounded-circle"
+        />
+        <h3>
+          <a href="{{ url_for('sentiment_checker')}}" class="badge badge-light"
+            >Sentiment Checker</a
+          >
+        </h3>
+        <p>Find out the sentiment of the text or word that you input</p>
+      </div>
+      <div class="col-lg">
+        <img
+          src="../static/img/document.png"
+          alt="employee"
+          class="float-left rounded-circle"
+        />
+        <h3>
+          <a href="{{ url_for('document_finder')}}" class="badge badge-light"
+            >Document Finder</a
+          >
+        </h3>
+        <p>
+          Check whether a text is spam or not. Just copy any text and check.
+        </p>
+      </div>
+      <div class="col-lg">
+        <img
+          src="../static/img/spam.png"
+          alt="employee"
+          class="float-left rounded-circle"
+        />
+        <h3>
+          <a
+            href="{{ url_for('twitter_sentiment_analysis')}}"
+            class="badge badge-light"
+            >Twitter Sentiment</a
+          >
+        </h3>
+        <p>Find the most similar document based on what you type</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /* Info Panel CSS*/ -->
+<!-- .info-panel {
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  margin-top: 20px;
+  background-color: white;
+  padding: 30px;
+}
+.info-panel img {
+  height: 80px;
+  width: 80px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.info-panel h4 {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.info-panel p {
+  font-size: 14px;
+  color: #acacac;
+  margin-top: -5px;
+  font-weight: 200;
+}  -->
+<!-- end Info Panel -->
+
+<!-- TRIAL DOM -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control input-keyword"
+          placeholder="Search Movie."
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary search-button" type="button">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row movie-container"></div>
+</div>
+
+<div class="container text-center" style="margin-bottom: 80px;">
+  <h1 id="judul">Hello World</h1>
+  <div id="container">
+    <section id="a">
+      <p class="p1">paragraf 1</p>
+      <a href="http://instagram.com/sandhikagalih">Instagram Sandhika Galih</a>
+      <p class="p2">paragraf 2</p>
+      <p class="p3">paragraf 3</p>
+    </section>
+    <section id="b">
+      <p>paragraf 4</p>
+      <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li class="item-3">item 3</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<!-- Script for TRIAL DOM -->
+<!-- searchButton = document.querySelector(".search-button");
+// console.log(searchButton);
+searchButton.addEventListener("click", function () {
+  const ul = document.querySelector("section#b ul");
+  const liBaru = document.createElement("li");
+  const teksLiBaru = document.createTextNode("Item Baru");
+  liBaru.appendChild(teksLiBaru);
+  ul.appendChild(liBaru);
+}); -->

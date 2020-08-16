@@ -21,16 +21,16 @@ doc_finder_tfidf, doc_finder_tfidf_matrix = train_tfidf(
 def home():
     return render_template('index.html')
 
-
+# SENTIMENT CHECKER
 @app.route("/sentiment-checker", methods=["GET", 'POST'])
 def sentiment_checker():
     if request.method == "GET":
         return render_template('sentiment-checker.html')
     elif request.method == "POST":
-        pred = sentiment_prediction(model)
-        return render_template('sentiment-checker-result.html', prediction=pred)
+        text, pred = sentiment_prediction(model)
+        return render_template('sentiment-checker.html', prediction=pred, data=text)
 
-
+# DOCUMENT FINDER
 @app.route("/document-finder", methods=["GET", 'POST'])
 def document_finder():
     if request.method == "GET":
@@ -39,9 +39,9 @@ def document_finder():
         query = request.form['text']
         prediction = document_prediction(
             query, "data/bank_central_asia_news.csv", 'Hit Sentence', doc_finder_tfidf, doc_finder_tfidf_matrix)
-        return render_template('document-finder-result.html', document_list=prediction)
+        return render_template('document-finder-result.html', document_list=prediction, data=query)
 
-
+# TWITTER SENTIMENT CHECKER
 @app.route("/twitter-sentiment-analysis", methods=["GET", 'POST'])
 def twitter_sentiment_analysis():
     if request.method == "GET":
@@ -72,7 +72,7 @@ def twitter_sentiment_analysis():
         df = integrate_sentiment_and_df(
             get_tweet_result_data, sentiment_colname, sentiment_result)
 
-        return render_template('twitter-sentiment-analysis-result.html', prediction=df)
+        return render_template('twitter-sentiment-analysis.html', prediction=df)
 
 
 if __name__ == '__main__':

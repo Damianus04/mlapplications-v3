@@ -22,6 +22,22 @@
       type="text/css"
       href="{{ url_for('static', filename='css/styles.css') }}"
     />
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
     {% if title %}
     <title>{{ title }} - MLAPPS</title>
@@ -30,83 +46,99 @@
     {% endif %}
   </head>
   <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-sm navbar-light bg-dark position-relative">
-      <div class="container">
-        <a class="navbar-brand" href="/">MLAPPS</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/"
-                >Home <span class="sr-only">(current)</span></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Applications
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a
-                  class="dropdown-item sc"
-                  href="{{ url_for('sentiment_checker')}}"
-                  >Sentiment Checker</a
+    <!-- HEADER -->
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">
+                MLAPPS is a collection of mini projects related to machine
+                learning, natural language processing and other topics about
+                data science. Please visit each application and give any
+                feedbacks via my
+                <a href="https://www.linkedin.com/in/damianus-deni/"
+                  >LinkedIn</a
                 >
-                <a
-                  class="dropdown-item sd"
-                  href="{{ url_for('twitter_sentiment_analysis')}}"
-                  >Twitter Sentiment</a
-                >
-                <a
-                  class="dropdown-item df"
-                  href="{{ url_for('document_finder')}}"
-                  >Document Finder</a
-                >
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
+                or email.
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/damianus-deni/"
+                    class="text-white"
+                    >Follow on Linkedin</a
+                  >
+                </li>
+                <li>
+                  <a href="https://github.com/Damianus04" class="text-white"
+                    >Fork on Github</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.kaggle.com/damianusdeni"
+                    class="text-white"
+                    >Learn on Kaggle</a
+                  >
+                </li>
+                <li>
+                  <a href="#" class="text-white"
+                    >Email: damianus.deni@gmail.com</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </nav>
-    <!-- end Navbar -->
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="/" class="navbar-brand d-flex align-items-center nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              aria-hidden="true"
+              class="mr-2"
+              viewBox="0 0 24 24"
+              focusable="false"
+            >
+              <path
+                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+              />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+            <strong>MLApps</strong>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarHeader"
+            aria-controls="navbarHeader"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- HEADER END -->
+
+    <!-- MAIN -->
+    <!-- MAIN part is on index.html -->
+    <!-- MAIN END -->
 
     <!-- Content Loader -->
     {% block content %}
@@ -115,61 +147,26 @@
     </div>
     {% endblock %}
 
-    <!-- Info Panel -->
-    <div class="row justify-content-center">
-      <div class="col-10 info-panel">
-        <div class="row">
-          <div class="col-lg">
-            <img
-              src="../static/img/sentiment.png"
-              alt="employee"
-              class="float-left rounded-circle"
-            />
-            <h3>
-              <a
-                href="{{ url_for('sentiment_checker')}}"
-                class="badge badge-light"
-                >Sentiment Checker</a
-              >
-            </h3>
-            <p>Find out the sentiment of the text or word that you input</p>
-          </div>
-          <div class="col-lg">
-            <img
-              src="../static/img/document.png"
-              alt="employee"
-              class="float-left rounded-circle"
-            />
-            <h3>
-              <a
-                href="{{ url_for('document_finder')}}"
-                class="badge badge-light"
-                >Document Finder</a
-              >
-            </h3>
-            <p>
-              Check whether a text is spam or not. Just copy any text and check.
-            </p>
-          </div>
-          <div class="col-lg">
-            <img
-              src="../static/img/spam.png"
-              alt="employee"
-              class="float-left rounded-circle"
-            />
-            <h3>
-              <a
-                href="{{ url_for('twitter_sentiment_analysis')}}"
-                class="badge badge-light"
-                >Twitter Sentiment</a
-              >
-            </h3>
-            <p>Find the most similar document based on what you type</p>
-          </div>
-        </div>
+    <!-- FOOTER -->
+    <footer class="text-muted bg-dark">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>
+          Album example is &copy; Bootstrap, but please download and customize
+          it for yourself!
+        </p>
+        <p>
+          New to Bootstrap?
+          <a href="https://getbootstrap.com/">Visit the homepage</a> or read our
+          <a href="/docs/4.5/getting-started/introduction/"
+            >getting started guide</a
+          >.
+        </p>
       </div>
-    </div>
-    <!-- end Info Panel -->
+    </footer>
+    <!-- FOOTER END -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

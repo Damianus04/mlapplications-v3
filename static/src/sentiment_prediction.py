@@ -10,7 +10,8 @@ def sentiment_prediction(model):
     text = request.form['text']
     data = [text]
     pred = model.predict(data)
-    return pred
+
+    return text, pred
 
 
 def train_tfidf(filepath, col_name, stopwords=None):

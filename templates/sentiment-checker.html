@@ -4,24 +4,76 @@
 {% block title %} Sentiment Checker {% endblock %}
 
 <!-- CONTENT -->
+{% block content %}
+<div id="sentiment-checker"></div>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1>Let's find out the sentiment</h1>
+    <div class="container text-center" style="margin-bottom: 80px;">
+      <form action="{{ url_for('sentiment_checker')}}" method="POST">
+        <div class="form-group">
+          <textarea
+            placeholder="Enter Text Here"
+            name="text"
+            class="form-control"
+            id="text"
+            rows="3"
+          ></textarea>
+          <input
+            id="inpkeyword"
+            type="submit"
+            class="btn btn-primary input-keyword"
+            value="Check"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Page Content -->
 {% block page_content %}
-<div class="page-header text-center">
-  <h1 id="idxx">Check Sentiment</h1>
-</div>
 
 <div class="container text-center" style="margin-bottom: 80px;">
-  <form action="{{ url_for('sentiment_checker')}}" method="POST">
-    <div class="form-group">
-      <label for="exampleFormControlTextarea1">Enter Text Here</label>
-      <textarea name="text" class="form-control" id="text" rows="3"></textarea>
-      <input
-        id="inpkeyword"
-        type="submit"
-        class="btn btn-primary input-keyword"
-        value="Check Sentiment."
-      />
+  <div class="row">
+    <div class="col-7">
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">Text you entered</h6>
+          <p class="card-text font-italic">
+            {% if data == "" %}
+            <p>text is empty</p>
+            {% else %}
+            <p class="font-italic">{{data}}</p>
+            {% endif %}
+          </p>
+        </div>
+      </div>
     </div>
-  </form>
+    <div class="col-5">
+      <div class="container">
+        {% if prediction == 1 %}
+        <div class="alert alert-success" role="alert">
+          <h2 class="alert-heading">Positive Tone</h2>
+        </div>
+        {% elif prediction == -1 %}
+        <div class="alert alert-danger" role="alert">
+          <h2 class="alert-heading">Negative Tone</h2>
+        </div>
+        {% elif prediction == 0 %}
+        <div class="alert alert-info" role="alert">
+          <h2 class="alert-heading">Neutral Tone</h2>
+        </div>
+        {% else %}
+        <div class="alert alert-light" role="alert">
+          <h2 class="alert-heading">
+            Sentiment is not detected, you have to input your text!
+          </h2>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </div>
 
-{% endblock %}
+{% endblock %} {% endblock %}
