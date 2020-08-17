@@ -1,10 +1,12 @@
 # Data science
 numpy
 pandas
+re
 
 # Machine Learning
 jcopml
 scikit-learn==0.22
+tweepy
 
 # NLP
 nltk
