@@ -1,7 +1,6 @@
 # Data science
 numpy
 pandas
-re
 
 # Machine Learning
 jcopml
