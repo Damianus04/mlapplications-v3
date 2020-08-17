@@ -11,8 +11,11 @@ from static.src.twitter_sentiment_prediction import get_tweets, predict_sentimen
 
 
 app = Flask(__name__)
-# model = load_model("model/indonesian_general_election_sgd_tfidf.pkl")
-model = load('model/sentiment_prediction.joblib')
+# model = load_model("model/indonesian_general_election_sgd_tfidf.pkl") #works
+# model = load_model("model/logreg_bow_pipeline_sentiment_checker.pkl")  # works
+# model = load_model("model/sgd_tfidf_wo_pipeline_sentiment_checker.pkl")
+model = load("model/logreg_tfidf.joblib")  # works
+# model = load('model/sentiment_prediction.joblib') #works
 doc_finder_tfidf, doc_finder_tfidf_matrix = train_tfidf(
     "data/bank_central_asia_news.csv", 'Hit Sentence', stopwords=STOPWORDS)
 
@@ -72,7 +75,7 @@ def twitter_sentiment_analysis():
         df = integrate_sentiment_and_df(
             get_tweet_result_data, sentiment_colname, sentiment_result)
 
-        return render_template('twitter-sentiment-analysis.html', prediction=df)
+        return render_template('twitter-sentiment-analysis.html', prediction=df, data=text_query)
 
 
 if __name__ == '__main__':
