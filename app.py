@@ -11,7 +11,8 @@ app = Flask(__name__)
 # model = load_model("model/logreg_bow_pipeline_sentiment_checker.pkl")  # works
 # model = load_model("model/sgd_tfidf_wo_pipeline_sentiment_checker.pkl")
 # model = load("model/logreg_tfidf.joblib")  # works
-model = load('model/sentiment_prediction.joblib')  # works
+# model = load('model/sentiment_prediction.joblib')  # works
+model = load('model/rand_search_logreg_hyper_tfidf_sklearn24.joblib')  # works
 doc_finder_tfidf, doc_finder_tfidf_matrix = train_tfidf(
     "data/bank_central_asia_news.csv", 'Hit Sentence', stopwords=STOPWORDS)
 
