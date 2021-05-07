@@ -4,7 +4,8 @@ pandas
 
 # Machine Learning
 jcopml
-scikit-learn==0.22
+# scikit-learn==0.22
+scikit-learn
 tweepy
 
 # NLP

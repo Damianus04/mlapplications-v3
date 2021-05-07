@@ -14,8 +14,8 @@ app = Flask(__name__)
 # model = load_model("model/indonesian_general_election_sgd_tfidf.pkl") #works
 # model = load_model("model/logreg_bow_pipeline_sentiment_checker.pkl")  # works
 # model = load_model("model/sgd_tfidf_wo_pipeline_sentiment_checker.pkl")
-model = load("model/logreg_tfidf.joblib")  # works
-# model = load('model/sentiment_prediction.joblib') #works
+# model = load("model/logreg_tfidf.joblib")  # works
+model = load('model/sentiment_prediction.joblib') #works
 doc_finder_tfidf, doc_finder_tfidf_matrix = train_tfidf(
     "data/bank_central_asia_news.csv", 'Hit Sentence', stopwords=STOPWORDS)
 
@@ -25,6 +25,8 @@ def home():
     return render_template('index.html')
 
 # SENTIMENT CHECKER
+
+
 @app.route("/sentiment-checker", methods=["GET", 'POST'])
 def sentiment_checker():
     if request.method == "GET":
@@ -34,6 +36,8 @@ def sentiment_checker():
         return render_template('sentiment-checker.html', prediction=pred, data=text)
 
 # DOCUMENT FINDER
+
+
 @app.route("/document-finder", methods=["GET", 'POST'])
 def document_finder():
     if request.method == "GET":
@@ -45,6 +49,8 @@ def document_finder():
         return render_template('document-finder-result.html', document_list=prediction, data=query)
 
 # TWITTER SENTIMENT CHECKER
+
+
 @app.route("/twitter-sentiment-analysis", methods=["GET", 'POST'])
 def twitter_sentiment_analysis():
     if request.method == "GET":

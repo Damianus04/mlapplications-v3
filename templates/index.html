@@ -164,3 +164,27 @@
 {% endblock %}
 
 <!-- MAIN END -->
+
+<!-- backup 12 march 2021 -->
+<!-- search button -->
+<div class="container text-center" style="margin-bottom: 80px;">
+  <form action="{{ url_for('keyword_search')}}" method="POST">
+    <div class="form-group">
+      <textarea
+        placeholder="Enter Keyword Here"
+        name="text"
+        class="form-control"
+        id="text"
+        rows="3"
+      ></textarea>
+      <input
+        id="inpkeyword"
+        type="submit"
+        class="btn btn-primary input-keyword"
+        value="Check"
+      />
+    </div>
+  </form>
+</div>
+<!-- end of search button -->
+
