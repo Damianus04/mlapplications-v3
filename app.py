@@ -80,6 +80,41 @@ def twitter_sentiment_analysis():
 
         return render_template('twitter-sentiment-analysis.html', prediction=df, data=text_query)
 
+# SOCIAL SENTIMENT CHECKER
+
+
+@app.route("/social-sentiment-checker", methods=["GET", 'POST'])
+def social_sentiment_checker():
+    if request.method == "GET":
+        return render_template('social-sentiment-checker.html')
+    # elif request.method == "POST":
+    #     pred = sentiment_prediction(model)
+    #     return render_template('twitter-sentiment-analysis-result.html', prediction=pred)
+
+    if request.method == "GET":
+        return render_template('social-sentiment-checker.html')
+    elif request.method == "POST":
+        # Get Tweet
+        text_query = request.form['text']
+        tweet_data = get_tweets(text_query)
+
+        # Predict Sentiment
+        model_prediction = model
+        text_list = tweet_data
+        colname = "tweet_text"
+
+        sentiment_tweet_data = predict_sentiment(
+            model_prediction, text_list, colname)
+
+        # Integrate Sentiment into Data
+        get_tweet_result_data = tweet_data
+        sentiment_colname = "sentiment"
+        sentiment_result = sentiment_tweet_data
+        df = integrate_sentiment_and_df(
+            get_tweet_result_data, sentiment_colname, sentiment_result)
+
+        return render_template('social-sentiment-checker.html', prediction=df, data=text_query)
+
 
 if __name__ == '__main__':
     app.run

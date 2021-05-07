@@ -16,32 +16,8 @@ authentication = tweepy.OAuthHandler(api_key, api_secret_key)
 authentication.set_access_token(access_token, access_token_secret)
 api = tweepy.API(authentication, wait_on_rate_limit=True)
 
-# OLD FUNCTION OF GET TWEETS
 
-
-# def get_tweets(text_query):
-#     # list to store tweets
-#     tweets_list = []
-#     # no of tweets
-#     count = 50
-#     try:
-#         # Pulling individual tweets from query
-#         for tweet in api.search(q=text_query, count=count):
-#             # print(tweet.text)
-#             # Adding to list that contains all tweets
-#             tweets_list.append({'created_at': tweet.created_at,
-#                                 'tweet_id': tweet.id,
-#                                 'tweet_text': tweet.text})
-#         # return tweets_list
-#         return pd.DataFrame.from_dict(tweets_list)
-
-#     except BaseException as e:
-#         print('failed on_status,', str(e))
-#         time.sleep(3)
-
-# NEW FUNCTION OF GET TWEETS
-
-
+# GET TWEETS
 def get_profile_banner_url(i):
     if 'profile_banner_url' in i.user._json:
         return i.user.profile_banner_url

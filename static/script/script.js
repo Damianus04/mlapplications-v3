@@ -29,3 +29,5 @@
 // els.onclick = ubahWarna;
 
 // PR: cara menambah elemen baru pada halaman html
+
+console.log('test text')
