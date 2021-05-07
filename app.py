@@ -1,10 +1,6 @@
 from flask import Flask, render_template, url_for, request
 import pandas as pd
-import pickle
 from joblib import load
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from jcopml.utils import load_model
-from nltk.tokenize import word_tokenize
 from static.src.sentiment_prediction import sentiment_prediction
 from static.src.document_finder import train_bow, train_tfidf, STOPWORDS, document_prediction
 from static.src.twitter_sentiment_prediction import get_tweets, predict_sentiment, integrate_sentiment_and_df
@@ -15,7 +11,7 @@ app = Flask(__name__)
 # model = load_model("model/logreg_bow_pipeline_sentiment_checker.pkl")  # works
 # model = load_model("model/sgd_tfidf_wo_pipeline_sentiment_checker.pkl")
 # model = load("model/logreg_tfidf.joblib")  # works
-model = load('model/sentiment_prediction.joblib') #works
+model = load('model/sentiment_prediction.joblib')  # works
 doc_finder_tfidf, doc_finder_tfidf_matrix = train_tfidf(
     "data/bank_central_asia_news.csv", 'Hit Sentence', stopwords=STOPWORDS)
 
