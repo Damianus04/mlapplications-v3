@@ -182,8 +182,8 @@ def text_preprocessing(text):
     step5 = slang_converter(step4)
     step6 = emoji_converter(step5)
     step7 = remove_stopwords(step6)
-    step8 = stem(step7)
+    # step8 = stem(step7)
 
-    return step8
+    return step7
 
 # {{url_for('twitter_sentiment_analysis')}}
