@@ -4,7 +4,7 @@ import nltk
 from joblib import load
 from static.src.sentiment_prediction import sentiment_prediction
 from static.src.document_finder import train_bow, train_tfidf, STOPWORDS, document_prediction
-from static.src.twitter_sentiment_prediction import get_tweets, predict_sentiment, integrate_sentiment_and_df
+from static.src.twitter_sentiment_prediction import get_tweets, predict_sentiment, integrate_sentiment_and_df, text_preprocessing
 
 
 app = Flask(__name__)
@@ -135,6 +135,11 @@ def social_sentiment_checker():
                 tweet_time_label = list(time2.time2)
                 tweet_count_values = list(time2.tweet_text)
 
+            # Preprocessing 'tweet_text'
+            twitter_data['tweet_text_preprocessed'] = twitter_data['tweet_text'].apply(
+                lambda x: text_preprocessing(x)
+            )
+
             # # potential reach data
             reach_data = twitter_data[['screen_name', 'followers']].head(
                 10).sort_values(by='followers', ascending=False)
@@ -143,7 +148,7 @@ def social_sentiment_checker():
 
             # # word distribution
             word_freq_dist_dict = []
-            for i in twitter_data.tweet_text:
+            for i in twitter_data.tweet_text_preprocessed:
                 word_freq_dist_dict.extend(i.split(' '))
 
             word_freq_dist = nltk.FreqDist(word_freq_dist_dict)
@@ -164,7 +169,7 @@ def social_sentiment_checker():
             # Predict Sentiment
             model_prediction = model
             text_list = twitter_data
-            colname = "tweet_text"
+            colname = "tweet_text_preprocessed"
 
             sentiment_tweet_data = predict_sentiment(
                 model_prediction, text_list, colname)
