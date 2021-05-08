@@ -157,10 +157,10 @@
                                   <br/>
                                   <a class="font-italic" href="{{ tweet_data.profile_url[i] }}">{{ tweet_data.profile_url[i] }}</a>
                                   <div>
-                                    {% if tweet_data.sentiment[i] == 'good' %}
-                                      <button type="button" class="btn btn-success">Good</button>
-                                    {% elif tweet_data.sentiment[i] == 'bad' %}
-                                      <button type="button" class="btn btn-danger">Bad</button>
+                                    {% if tweet_data.sentiment[i] == 'positive' %}
+                                      <button type="button" class="btn btn-success">Positive</button>
+                                    {% elif tweet_data.sentiment[i] == 'negative' %}
+                                      <button type="button" class="btn btn-danger">Negative</button>
                                     {% elif tweet_data.sentiment[i] == 'neutral' %}
                                       <button type="button" class="btn btn-info">Neutral</button>
                                     {% else %}

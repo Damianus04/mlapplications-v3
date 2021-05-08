@@ -180,12 +180,17 @@ def social_sentiment_checker():
             sentiment_result = sentiment_tweet_data
             df = integrate_sentiment_and_df(
                 get_tweet_result_data, sentiment_colname, sentiment_result)
+
+            sentiment_chart = df[['sentiment', 'tweet_text']].groupby(
+                ['sentiment'], as_index=False).count()
+            tweet_sentiment_label = list(sentiment_chart.sentiment)
+            tweet_sentiment_values = list(sentiment_chart.tweet_text)
         except:
             tweet_legend = "conversations"
             tweet_time_label = ['None']
             tweet_count_values = [0]
-            # tweet_sentiment_label = ['None']
-            # tweet_sentiment_values = [0]
+            tweet_sentiment_label = ['None']
+            tweet_sentiment_values = [0]
             reach_data_screen_name = ['None']
             reach_data_followers = [0]
             words = ['None']
@@ -197,7 +202,7 @@ def social_sentiment_checker():
                                total_mentions=total_mentions, average_mentions=average_mentions,
                                #    legend=legend, labels=labels, values=values,
                                tweet_time_label=tweet_time_label, tweet_count_values=tweet_count_values, tweet_legend=tweet_legend,
-                               #    tweet_sentiment_label=tweet_sentiment_label, tweet_sentiment_values=tweet_sentiment_values,
+                               tweet_sentiment_label=tweet_sentiment_label, tweet_sentiment_values=tweet_sentiment_values,
                                reach_data_screen_name=reach_data_screen_name, reach_data_followers=reach_data_followers,
                                words=words, words_frequency=words_frequency, locations=locations, locations_frequency=locations_frequency
                                )
