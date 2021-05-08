@@ -96,24 +96,24 @@ def social_sentiment_checker():
     elif request.method == "POST":
         # Get Tweet
         text_query = request.form['text']
-        tweet_data = get_tweets(text_query)
+        twitter_data = get_tweets(text_query)
 
         # Predict Sentiment
         model_prediction = model
-        text_list = tweet_data
+        text_list = twitter_data
         colname = "tweet_text"
 
         sentiment_tweet_data = predict_sentiment(
             model_prediction, text_list, colname)
 
         # Integrate Sentiment into Data
-        get_tweet_result_data = tweet_data
+        get_tweet_result_data = twitter_data
         sentiment_colname = "sentiment"
         sentiment_result = sentiment_tweet_data
         df = integrate_sentiment_and_df(
             get_tweet_result_data, sentiment_colname, sentiment_result)
 
-        return render_template('social-sentiment-checker.html', prediction=df, data=text_query)
+        return render_template('social-sentiment-checker.html', tweet_data=df, data=text_query)
 
 
 if __name__ == '__main__':
